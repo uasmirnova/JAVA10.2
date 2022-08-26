@@ -1,31 +1,22 @@
 package ru.netology.radio;
 
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
+
 public class Radio {
 
     private int minStation = 0;
     private int maxStation = 9;
     private int numberOfStation = 10;
     private int currentStation;
-
-    public int getMinStation() {
-        return minStation;
-    }
-
-    public int getMaxStation() {
-        return maxStation;
-    }
-
-    public int getNumberOfStation() {
-        return numberOfStation;
-    }
-
-    public int getCurrentStation() {
-        return currentStation;
-    }
-
-    public Radio() {
-
-    }
+    private int minVolume = 0;
+    private int maxVolume = 100;
+    private int currentVolume;
 
     public Radio(int numberOfStation) {
         this.numberOfStation = numberOfStation;
@@ -42,6 +33,16 @@ public class Radio {
         currentStation = newCurrentStation;
     }
 
+    public void setCurrentVolume(int newCurrentVolume) {
+        if (newCurrentVolume > maxVolume) {
+            return;
+        }
+        if (newCurrentVolume < minVolume) {
+            return;
+        }
+        currentVolume = newCurrentVolume;
+    }
+
     public void nextStation() {
         if (currentStation < maxStation) {
             currentStation = currentStation + 1;
@@ -52,32 +53,6 @@ public class Radio {
         if (currentStation > minStation) {
             currentStation = currentStation - 1;
         } else currentStation = maxStation;
-    }
-
-    private int minVolume = 0;
-    private int maxVolume = 100;
-    private int currentVolume;
-
-    public int getMinVolume() {
-        return minVolume;
-    }
-
-    public int getMaxVolume() {
-        return maxVolume;
-    }
-
-    public int getCurrentVolume() {
-        return currentVolume;
-    }
-
-    public void setCurrentVolume(int newCurrentVolume) {
-        if (newCurrentVolume > maxVolume) {
-            return;
-        }
-        if (newCurrentVolume < minVolume) {
-            return;
-        }
-        currentVolume = newCurrentVolume;
     }
 
     public void increaseVolume() {
